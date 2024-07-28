@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ch04.dao.CustomerDao">
+    <select id="listCust" resultType="ch04.dto.CustomerDto">
+        select * from customer
+    </select>
+
+    <select id="detailCust" resultType="ch04.dto.CustomerDto" parameterType="int">
+        select * from customer where custid = #{custId};
+    </select>
+
+    <insert id="insertCust" parameterType="ch04.dto.CustomerDto">
+        insert into customer (custid, name, address, phone) values ( #{custId}, #{name}, #{address}, #{phone});
+    </insert>
+
+    <update id="updateCust" parameterType="ch04.dto.CustomerDto">
+        update customer set name = #{name}, address = #{address}, phone = #{phone} where custid = #{custId};
+    </update>
+
+    <delete id="deleteCust" parameterType="int">
+        delete from customer where custid = #{custId};
+    </delete>
+</mapper>
